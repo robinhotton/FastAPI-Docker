@@ -1,3 +1,20 @@
-__pycache__/
-*.pyc
-*.pyo
+# Git files
+.git
+.gitignore
+
+# Pytest cache &  Local databases
+.pytest_cache
+test.db
+
+# Environment examples
+.env.example
+
+# Documentation
+README.md
+
+# IDE files
+.vscode
+.idea
+
+# Python cache
+__pycache__

@@ -16,4 +16,6 @@ COPY ./tests /code/tests
 EXPOSE 80
 
 # Démarrer l'application
+# 0.0.0.0 -> permet d'écouter sur toutes les interfaces réseau (donc accessible depuis l'extérieur)
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80", "--reload", "--reload-dir", "/code/api"]
+# '--reload-dir' permet de surveiller plus efficacement les modifications dans le répertoire '/code/api' pour plus de rapidité

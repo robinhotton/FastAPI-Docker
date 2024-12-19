@@ -1,4 +1,4 @@
-# Byte-compiled / optimized / DLL files
+# Python cache
 __pycache__
 
 # IDE
@@ -6,9 +6,10 @@ __pycache__
 .vscode
 
 # env
-.venv
 .env
+.venv
 
 # tests
 test.db
+test.db-journal
 .pytest_cache

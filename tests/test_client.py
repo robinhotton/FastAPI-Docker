@@ -34,6 +34,10 @@ def test_create_client(client: TestClient, client_data):
     """Tester la création d'un client."""
     response: Response = client.post(CLIENT_ENDPOINT, json=client_data)
     assert response.status_code == 201
+    
+    data = response.json()
+    del data["codcli"]
+    assert data == client_data  
 
 
 def test_get_client_by_id(client: TestClient, client_data):
@@ -46,6 +50,9 @@ def test_get_client_by_id(client: TestClient, client_data):
     response: Response = client.get(f"{CLIENT_ENDPOINT}/1")
     assert response.status_code == 200
     
+    data = response.json()
+    del data["codcli"]
+    assert data == client_data  
 
 
 def test_patch_client_by_id(client: TestClient, client_data):

@@ -12,17 +12,17 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=mysql+pymysql://root:password@db:3306/mydatabase
+      - DATABASE_URL=${DATABASE_URL}  # Référence à la variable dans .env
 
   db:
     image: mariadb:10.6
     container_name: mariadb
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3306:3306"
     volumes:

@@ -10,6 +10,7 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 # Copier le code source
 COPY ./api /code/api
+COPY ./test /code/test
 
 # Exposer le port 80
 EXPOSE 80

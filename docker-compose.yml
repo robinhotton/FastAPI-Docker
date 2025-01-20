@@ -6,13 +6,15 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8000:80" # Host:Container
+      - "8000:80"  # Host:Container
     volumes:
-      - .:/code:cached # ':cached' make application reload faster
+      - .:/code:cached  # ':cached' makes application reload faster
     depends_on:
       - db
     environment:
-      - DATABASE_URL=${DATABASE_URL}
+      - USER=${USER}
+      - PASSWORD=${PASSWORD}
+      - DATABASE=${DATABASE}
 
   db:
     image: mariadb:10.6
@@ -20,11 +22,11 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE}
+      MYSQL_USER: ${USER}
+      MYSQL_PASSWORD: ${PASSWORD}
     ports:
-      - "3306:3306" # Host:Container
+      - "3307:3306"  # Map host port 3307 to container port 3306
     volumes:
       - mariadb_data:/var/lib/mysql
 
@@ -32,7 +34,7 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8070:8080 # Redirect port 80 to 8080 (HTTP) because of Apache
+      - 8070:8080  # Redirect port 80 to 8080 (HTTP) because of Apache
 
 volumes:
   mariadb_data:

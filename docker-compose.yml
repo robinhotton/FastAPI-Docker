@@ -8,7 +8,7 @@ services:
     ports:
       - "8000:80" # Host:Container
     volumes:
-      - .:/code:cached
+      - .:/code:cached # ':cached' make application reload faster
     depends_on:
       - db
     environment:
@@ -24,7 +24,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - "3306:3306"
+      - "3306:3306" # Host:Container
     volumes:
       - mariadb_data:/var/lib/mysql
 
@@ -32,7 +32,7 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8070:8080 # redirection du port 80 vers 8080 (HTTP) à cause d'apache
+      - 8070:8080 # Redirect port 80 to 8080 (HTTP) because of Apache
 
 volumes:
   mariadb_data:

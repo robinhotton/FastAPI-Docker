@@ -1,6 +1,10 @@
 # FastAPI-Docker
 
-A fully containerized FastAPI application using MariaDB as the database, packaged with Docker for seamless development and deployment.
+This application is a fully containerized FastAPI application. It's an exemple of containerized api with python to manage client fidelity points of cheese factory in order to manage learning process of FastAPI and Docker to diginamic students.
+
+## Introduction
+
+The build start with a **Dockerfile** that defines the FastAPI application and its dependencies like **requirements.txt**. The application is built and run using **Docker Compose**, which also starts a MariaDB container as the database and an Adminer container as web database visualizer.
 
 ## Project Structure
 
@@ -77,6 +81,34 @@ To stop and remove all containers:
 docker-compose down
 ```
 
+## Database Management
+
+MariaDB is included as part of the `docker-compose.yml` file. You can interact with the database using any MySQL/MariaDB client or using adminer, a lightweight database management tool like phpMyAdmin.
+
+### Access the Database via Adminer
+
+Adminer is a lightweight database management tool that is accessible via a web browser.
+
+Navigate to **[http://localhost:8070](http://localhost:8070)** and use the following credentials:
+
+- **System**: MySQL
+- **Server**: db
+- **Username**: username
+- **Password**: password
+- **Database**: database
+
+Dont forget to replace `username`, `password`, and `database` with the values defined in your `.env` file.
+
+### Access the MariaDB Container
+
+To open a MariaDB shell inside the container:
+
+```bash
+docker-compose exec db mysql -u root -p
+```
+
+Use the password defined in your `.env` file with `MYSQL_ROOT_PASSWORD`.
+
 ## Running Tests
 
 ### Option 1: Run Tests in a Dedicated Test Container
@@ -95,20 +127,6 @@ Access the FastAPI container shell and run the tests manually:
 docker-compose exec fastapi bash
 pytest
 ```
-
-## Database Management
-
-MariaDB is included as part of the `docker-compose.yml` file. You can interact with the database using any MySQL/MariaDB client.
-
-### Access the MariaDB Container
-
-To open a MariaDB shell inside the container:
-
-```bash
-docker-compose exec db mysql -u root -p
-```
-
-Use the password defined in your `.env` file with `MYSQL_ROOT_PASSWORD`.
 
 ## Debugging
 
